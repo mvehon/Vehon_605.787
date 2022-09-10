@@ -26,7 +26,15 @@ section {
 }
 
 .section-contents {
-    padding: 10px;
+    clear: right;
+    max-height: 200px;
+    overflow-y: hidden;
+    padding: 0 10px;
+}
+
+.section-contents:hover {
+    overflow-y: scroll;
+    cursor: row-resize;
 }
 
 .row {
