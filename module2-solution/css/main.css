@@ -25,7 +25,7 @@ section {
 }
 
 .section-contents {
-    font-family: Helvetica, serif; 
+    font-family: Helvetica, serif;
     padding: 10px;
 }
 
@@ -49,6 +49,23 @@ section {
 
 /*Mobile*/
 @media (max-width: 767px) {
+    .section-title {
+        width: 100%;
+    }
+
+    .chicken::after {
+        content: "hand breaded in our special blend of herbs and spices";
+    }
+
+    .beef::after {
+        content: "savory cuts of sirloin, fillet, and rib-eye cooked to perfection over an open flame";
+    }
+
+    .sushi::after {
+        content: "six pieces of sushi served with a side of soy sauce, ginger and wasabi";
+    }
+
+
     .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
         float: left;
     }
