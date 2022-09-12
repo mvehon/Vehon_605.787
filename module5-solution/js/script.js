@@ -22,6 +22,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
         "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
     let menuItemsTitleHtml = "snippets/menu-items-title.html";
     let menuItemHtml = "snippets/menu-item.html";
+    let aboutHtml = "snippets/about.html";
 
 // Convenience function for inserting innerHTML for 'select'
     let insertHtml = function (selector, html) {
@@ -51,6 +52,11 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
         let classes = document.querySelector("#navHomeButton").className;
         classes = classes.replace(new RegExp("active", "g"), "");
         document.querySelector("#navHomeButton").className = classes;
+
+        // Remove 'active' from about button
+        classes = document.querySelector("#navAboutButton").className;
+        classes = classes.replace(new RegExp("active", "g"), "");
+        document.querySelector("#navAboutButton").className = classes;
 
         // Add 'active' to menu button if not already there
         classes = document.querySelector("#navMenuButton").className;
@@ -334,6 +340,59 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
         html = insertProperty(html, portionPropName, portionValue);
         return html;
     }
+
+    //EXTRA JHU REQUIREMENTS below
+
+    // Remove the class 'active' from home and switch to About button
+    let switchAboutToActive = function () {
+        // Remove 'active' from home button
+        let classes = document.querySelector("#navHomeButton").className;
+        classes = classes.replace(new RegExp("active", "g"), "");
+        document.querySelector("#navHomeButton").className = classes;
+
+        //Also remove active from menu
+        classes = document.querySelector("#navMenuButton").className;
+        classes = classes.replace(new RegExp("active", "g"), "");
+        document.querySelector("#navMenuButton").className = classes;
+
+        // Add 'active' to about button if not already there
+        classes = document.querySelector("#navAboutButton").className;
+        if (classes.indexOf("active") === -1) {
+            classes += " active";
+            document.querySelector("#navAboutButton").className = classes;
+        }
+    };
+
+    /**
+     * Generates a random number in the range of low to high
+     * @param low - the lowest possible number
+     * @param high - the highest possible number
+     * @returns {*}
+     */
+    function generateRandomNumber(low, high) {
+        return Math.floor(Math.random() * high) + low;
+    }
+
+    dc.showAbout = function () {
+        // Retrieve single category snippet
+        $ajaxUtils.sendGetRequest(
+            aboutHtml,
+            function (aboutHtml) {
+                // Change top selection
+                switchAboutToActive();
+
+                let starRating = generateRandomNumber(1, 5)
+
+                //For the "X-star rating" text
+                aboutHtml += `<span>${starRating}-star rating</span>`
+                insertHtml("#main-content", aboutHtml);
+
+                for (let i = 1; i <= 5; i++) {
+                    document.querySelector(`#main-content > span:nth-child(${i})`).className = i > starRating ? "fa fa-star-o" : "fa fa-star"
+                }
+            },
+            false);
+    };
 
 
     global.$dc = dc;
