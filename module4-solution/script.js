@@ -63,4 +63,48 @@ WARNING!!! WARNING!!!
             helloSpeaker.speak(name)
         }
     }
+
+    //Extra requirement #2
+    /**
+     * Takes a name and returns a greeting for that name
+     * @param name - the name to get greeting for
+     * @returns {string}
+     */
+    function mapNames(name) {
+        const firstLetter = name.charAt(0)
+        if (firstLetter.toLowerCase() === 'j') {
+            return byeSpeaker.speakSimple(name)
+        } else {
+            return helloSpeaker.speakSimple(name)
+        }
+    }
+
+    console.log('\n***** Extra Requirement #2 ****\n')
+    const greetings = names.map(mapNames)
+    greetings.forEach(greeting => console.log(greeting))
+
+    //Extra requirement #3
+    /**
+     * Reduces the names array into a separate array for the hello and goodbye greetings
+     * @param acc - the accumulator
+     * @param name - the current name
+     * @returns {*}
+     */
+    function reduceNames(acc, name) {
+        const firstLetter = name.charAt(0)
+        if (firstLetter.toLowerCase() === 'j') {
+            acc.bye = acc.bye.concat(byeSpeaker.speakSimple(name))
+        } else {
+            acc.hello = acc.hello.concat(helloSpeaker.speakSimple(name))
+        }
+        return acc;
+    }
+
+    console.log('\n***** Extra Requirement #3 ****\n')
+    const reducedGreedings = names.reduce(reduceNames, {hello: [], bye: []})
+
+    reducedGreedings.hello.forEach(greeting => console.log(greeting))
+    reducedGreedings.bye.forEach(greeting => console.log(greeting))
+
+
 })()
