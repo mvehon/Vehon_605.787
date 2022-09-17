@@ -17,10 +17,15 @@
 
             if (!$scope.itemString.length) {
                 $scope.message = "Please enter data first"
-            } else if (items.length <= 3) {
-                $scope.message = "Enjoy!"
-            } else if (items.length > 3) {
-                $scope.message = "Too much!"
+                $scope.messageStyle = {color: 'red', border: '1px solid red'}
+            } else {
+                $scope.messageStyle = {color: 'green', border: '1px solid green'}
+
+                if (items.length <= 3) {
+                    $scope.message = "Enjoy!"
+                } else {
+                    $scope.message = "Too much!"
+                }
             }
         }
     }
