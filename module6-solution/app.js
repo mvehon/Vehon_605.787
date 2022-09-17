@@ -13,6 +13,7 @@
         $scope.checkTooMuch = function () {
             const items = $scope.itemString
                 .split(",")
+                .filter(x => x.trim().length) //Removes empty or whitespace strings
 
             if (!$scope.itemString.length) {
                 $scope.message = "Please enter data first"
