@@ -5,9 +5,10 @@
         .controller('ToBuyController', ToBuyController)
         .controller('AlreadyBoughtController', AlreadyBoughtController)
         .service('ShoppingListCheckOffService', ShoppingListCheckOffService)
+        .filter('totalPrice', TotalPriceFilterFactory)
 
     ToBuyController.$inject = ['ShoppingListCheckOffService']
-    AlreadyBoughtController.$inject = ['ShoppingListCheckOffService']
+    AlreadyBoughtController.$inject = ['ShoppingListCheckOffService', 'totalPriceFilter']
 
     function ToBuyController(ShoppingListCheckOffService) {
         const toBuy = this;
@@ -15,7 +16,7 @@
         toBuy.buyItem = itemName => ShoppingListCheckOffService.buyItem(itemName)
     }
 
-    function AlreadyBoughtController(ShoppingListCheckOffService) {
+    function AlreadyBoughtController(ShoppingListCheckOffService, totalPriceFilter) {
         const alreadyBought = this;
         alreadyBought.items = ShoppingListCheckOffService.getBoughtItems()
     }
@@ -26,23 +27,28 @@
         let items = [
             {
                 name: "milk",
-                quantity: 2
+                quantity: 2,
+                pricePerItem: 2.25
             },
             {
                 name: "donuts",
-                quantity: 200
+                quantity: 200,
+                pricePerItem: 0.5
             },
             {
                 name: "cookies",
-                quantity: 300
+                quantity: 300,
+                pricePerItem: 0.25
             },
             {
                 name: "chocolate",
-                quantity: 5
+                quantity: 4,
+                pricePerItem: 3
             },
             {
                 name: "sodas",
-                quantity: 10
+                quantity: 10,
+                pricePerItem: 1.5
             }
         ]
 
@@ -59,6 +65,10 @@
         //Expose items
         service.getToBuyItems = () => toBuyItems
         service.getBoughtItems = () => boughtItems
+    }
+
+    function TotalPriceFilterFactory() {
+        return item => `$$$${(item.quantity * item.pricePerItem).toFixed(2)}`
     }
 })
 ();
