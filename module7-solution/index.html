@@ -56,7 +56,7 @@
             <h2>Already Bought:</h2>
             <ul>
                 <li ng-repeat="item in alreadyBought.items">Bought {{item.quantity}} {{item.name}} for total price of
-                    {{item | totalPrice}} <!--TODO make this a custom filter-->
+                    {{item | totalPrice}}
                 </li>
             </ul>
             <div class="emptyMessage" ng-if="!alreadyBought.items.length">Nothing bought yet.</div>
