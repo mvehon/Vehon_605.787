@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    font-family: Helvetica, serif;
+}
+
+.navbar-nav {
+    margin: 0;
+}
+
+.navbar-nav li {
+    border: 1px solid gray;
+}
+
+.navbar-collapse {
+    padding: 0;
+}
+
+.navbar-nav {
+    background-color: white;
+    text-align: center;
+    padding: 0;
+}
+
+section {
+    background-color: whitesmoke;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 0;
+}
