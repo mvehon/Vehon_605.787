@@ -385,11 +385,13 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 
                 //For the "X-star rating" text
                 aboutHtml += `<span>${starRating}-star rating</span>`
-                insertHtml("#main-content", aboutHtml);
 
                 for (let i = 1; i <= 5; i++) {
-                    document.querySelector(`#main-content > span:nth-child(${i})`).className = i > starRating ? "fa fa-star-o" : "fa fa-star"
+                    aboutHtml = insertProperty(aboutHtml, `class${i}`, i > starRating ? "fa fa-star-o" : "fa fa-star")
                 }
+
+                insertHtml("#main-content", aboutHtml);
+
             },
             false);
     };
