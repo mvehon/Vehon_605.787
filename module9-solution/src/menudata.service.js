@@ -10,11 +10,11 @@
     function MenuDataService($http, $q, $timeout) {
         let service = this;
 
-        const categoriesUrl = 'https://davids-restaurant.herokuapp.com/categories.json'
+        const restaurantUrl = 'https://davids-restaurant.herokuapp.com'
         service.getAllCategories = () => {
             return $http({
                 method: "GET",
-                url: categoriesUrl
+                url: restaurantUrl + "/categories.json"
             })
                 .then(response => {
                     return response.data;
@@ -24,7 +24,7 @@
         service.getItemsForCategory = categoryShortName => {
             return $http({
                 method: "GET",
-                url: categoriesUrl,
+                url: restaurantUrl + "/menu_items.json",
                 params: {category: categoryShortName}
             })
                 .then(response => {

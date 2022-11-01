@@ -31,15 +31,33 @@
             // Premade list page
             .state('categories', {
                 url: '/categories',
-                templateUrl: 'src/templates/main-shoppinglist.template.html', //TODO
-                controller: 'CategoriesController as mainList', //TODO
+                templateUrl: 'src/templates/categories.template.html', //TODO
+                controller: 'CategoriesController as categories', //TODO
                 resolve: {
                     items: ['MenuDataService', function (MenuDataService) {
                         return MenuDataService.getAllCategories()
                     }]
                 }
             })
-/*
+
+            //TODO this was today 10/31
+            .state('items', {
+                url: '/categories/{category}/items',
+                templateUrl: 'src/templates/item-detail.template.html',
+                controller:'ItemsController as items',
+                resolve: {
+                    itemList: ['MenuDataService', '$stateParams',
+                        function (MenuDataService, $stateParams) {
+                            const result = MenuDataService.getItemsForCategory($stateParams.category);
+                            console.log(result);
+                            return result;
+                        }]
+                }
+            })
+
+
+
+/** TODO
             .state('mainList.itemDetail', { //TODO
                 url: '/item-detail/{itemId}', //TODO '/items?shortName={itemId}'
                 templateUrl: 'src/shoppinglist/templates/item-detail.template.html', //TODO
@@ -49,7 +67,8 @@
                         return MenuDataService.getItemsForCategory(); //TODO itemId?
                     }]
                 }
-            });*/
+            });
+ */
 
     }
 

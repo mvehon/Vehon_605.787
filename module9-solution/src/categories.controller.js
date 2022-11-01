@@ -5,11 +5,10 @@
         .controller('CategoriesController', CategoriesController);
 
 
-    CategoriesController.$inject = ['MenuDataService', 'items'];
+    CategoriesController.$inject = ['items'];
 
-    function CategoriesController(MenuDataService, items) {
+    function CategoriesController(items) {
         let mainList = this;
         mainList.items = items;
     }
-
 })();
