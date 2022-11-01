@@ -1,9 +1,7 @@
 (function () {
 
-
     angular.module('MenuApp')
         .service('MenuDataService', MenuDataService);
-
 
     MenuDataService.$inject = ['$http', '$q', '$timeout']
 
@@ -32,14 +30,5 @@
                 })
         };
     }
-
-
-//TODO define MenuDataService
-    //TODO getAllCategories()
-    //returns a promise
-    //calls https://davids-restaurant.herokuapp.com/categories.json with $http
-    //TODO getItemsForCategory(categoryShortName)
-    //returns a promise
-    //calls https://davids-restaurant.herokuapp.com/menu_items.json?category=${categoryShortName} with $http
 
 })();

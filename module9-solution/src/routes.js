@@ -40,11 +40,10 @@
                 }
             })
 
-            //TODO this was today 10/31
             .state('items', {
                 url: '/categories/{category}/items',
                 templateUrl: 'src/templates/item-detail.template.html',
-                controller:'ItemsController as items',
+                controller: 'ItemsController as items',
                 resolve: {
                     itemList: ['MenuDataService', '$stateParams',
                         function (MenuDataService, $stateParams) {
@@ -54,22 +53,6 @@
                         }]
                 }
             })
-
-
-
-/** TODO
-            .state('mainList.itemDetail', { //TODO
-                url: '/item-detail/{itemId}', //TODO '/items?shortName={itemId}'
-                templateUrl: 'src/shoppinglist/templates/item-detail.template.html', //TODO
-                controller: "ItemDetailController as itemDetail", //TODO
-                resolve: {
-                    items: ['MenuDataService', function (MenuDataService) {
-                        return MenuDataService.getItemsForCategory(); //TODO itemId?
-                    }]
-                }
-            });
- */
-
     }
 
 })();
