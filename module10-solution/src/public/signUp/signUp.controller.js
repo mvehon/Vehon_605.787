@@ -15,14 +15,23 @@
                     if (response) {
                         UserService.register(controller);
                         controller.isRegistered = true;
-                        controller.isMenuItemNotFound = false;
+                        controller.menuItemMissing = false;
                     } else {
-                        controller.isMenuItemNotFound = true;
+                        controller.menuItemMissing = true;
                         controller.isRegistered = false;
                     }
                 }).catch(e => {
-                controller.isMenuItemNotFound = true;
+                controller.menuItemMissing = true;
                 controller.isRegistered = false;
+            })
+        }
+
+        controller.checkIfMenuItemExists = function () {
+            MenuService.getMenuItem(controller.favoriteMenuItem)
+                .then(response => {
+                    controller.menuItemMissing = !response;
+                }).catch(e => {
+                controller.menuItemMissing = true;
             })
         }
     }

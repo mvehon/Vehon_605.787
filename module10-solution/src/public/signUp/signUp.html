@@ -66,9 +66,13 @@
       <input type="text" name="favoriteMenuItem" placeholder="Favorite Menu Number"
              ng-model="signing.favoriteMenuItem"
              required
+             ng-blur="signing.checkIfMenuItemExists()"
              maxlength="3">
       <span ng-if="signUp.favoriteMenuItem.$error.required
           && signUp.favoriteMenuItem.$touched">Favorite menu item is required</span>
+        <span ng-if="signing.menuItemMissing">
+            No matching menu item found.
+        </span>
     </span>
         </div>
         <br/>
@@ -80,12 +84,8 @@
                     ng-click="signing.register()">Register
             </button>
         </div>
-        <div ng-if="signing.isRegistered">
+        <div ng-if="signing.isRegistered" class="signUp-title">
             You information has been saved.
-        </div>
-
-        <div ng-if="signing.isMenuItemNotFound">
-            No matching menu item found.
         </div>
     </form>
 </div>
