@@ -41,6 +41,16 @@
                         return MenuService.getMenuItems($stateParams.category);
                     }]
                 }
-            });
+            })
+            .state('public.signUp', {
+                url: '/signUp',
+                templateUrl: 'src/public/signUp/signUp.html',
+                controller: 'SignUpController as signUp'
+            })
+            .state('public.myInfo', {
+                url: '/myInfo',
+                templateUrl: 'src/public/myInfo/myInfo.html',
+                cotroller: 'MyInfoController as myInfo',
+            })
     }
 })();

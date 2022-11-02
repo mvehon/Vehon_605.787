@@ -1,0 +1,32 @@
+<div class="container" ng-controller="MyInfoController as info">
+    <div class="unregistered" ng-if="!info.isRegistered">
+        <h3>Not Signed Up Yet. <a ui-sref="public.signUp">Sign up Now!</a></h3>
+    </div>
+
+    <div ng-if="info.isRegistered">
+        <div id="user-info">
+            <h3>My Information</h3>
+            <br/>
+            <div>
+                <span class="myInfo-label">Name:</span>
+                <span>{{info.user.firstName}} {{info.user.lastName}}</span>
+            </div>
+            <div>
+                <span class="myInfo-label">Email:</span>
+                <span>{{info.user.email}}</span>
+            </div>
+            <div>
+                <span class="myInfo-label">Phone Number:</span>
+                <span>{{info.user.phoneNumber}}</span>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div>
+            <h3>Favorite Item:</h3>
+            <br/>
+            <menu-item menu-item="menuItem"></menu-item>
+        </div>
+    </div>
+</div>

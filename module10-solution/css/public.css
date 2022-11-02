@@ -183,7 +183,7 @@ h3.menu-item-title {
     }
 
     .menu-item-description {
-        text-align: center;;
+        text-align: center;
     }
 }
 
@@ -204,4 +204,33 @@ h3.menu-item-title {
         float: left;
         width: 100%;
     }
+}
+
+
+.signUp-title {
+    text-align: center;
+}
+
+input {
+    color: black;
+}
+
+.form-label {
+    text-align: right;
+}
+
+#signUp-submit {
+    display: block;
+    margin: auto;
+    color: black;
+    background-color: darkgray;
+}
+
+.myInfo-label {
+    font-weight: bold;
+}
+
+.unregistered {
+    margin: 100px;
+    text-align: center;
 }

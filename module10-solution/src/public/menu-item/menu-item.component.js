@@ -10,12 +10,10 @@
             controller: MenuItemController
         });
 
-
     MenuItemController.$inject = ['ApiPath'];
 
     function MenuItemController(ApiPath) {
-        var $ctrl = this;
+        const $ctrl = this;
         $ctrl.basePath = ApiPath;
     }
-
 })();
