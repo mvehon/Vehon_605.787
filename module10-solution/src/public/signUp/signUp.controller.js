@@ -35,15 +35,18 @@
 
         controller.checkIfMenuItemExists = function () {
             let favoriteMenuItem = controller.favoriteMenuItem
-            let [category] = favoriteMenuItem.split(/(\d+)/)
+            let [category, number] = favoriteMenuItem.split(/(\d+)/)
 
-            MenuService.getMenuItem(category)
-                .then(response => {
-                    controller.menuItemMissing = !response?.menu_items?.find(x => x.short_name === favoriteMenuItem)
-                }).catch(e => {
-                console.log('Menu item exists failure: %s', e.message)
-                controller.menuItemMissing = true;
-            })
+            //Only run this check when user has input a category + the number
+            if (category && number) {
+                MenuService.getMenuItem(category)
+                    .then(response => {
+                        controller.menuItemMissing = !response?.menu_items?.find(x => x.short_name === favoriteMenuItem)
+                    }).catch(e => {
+                    console.log('Menu item exists failure: %s', e.message)
+                    controller.menuItemMissing = true;
+                })
+            }
         }
     }
 }());

@@ -66,7 +66,8 @@
       <input type="text" name="favoriteMenuItem" placeholder="Favorite Menu Number"
              ng-model="signing.favoriteMenuItem"
              required
-             ng-blur="signing.checkIfMenuItemExists()"
+             ng-change="signing.checkIfMenuItemExists()"
+             ng-model-options="{debounce:300}"
              maxlength="3">
       <span ng-if="signUp.favoriteMenuItem.$error.required
           && signUp.favoriteMenuItem.$touched">Favorite menu item is required</span>
