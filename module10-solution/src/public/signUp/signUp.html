@@ -1,0 +1,92 @@
+<div class="container">
+    <h3 class="signUp-title">Sign up for our newsletter</h3>
+    <br/>
+    <br/>
+    <form name="signUp" ng-controller="SignUpController as signing" novalidate>
+        <div>
+            <span class="col-md-6 col-xs-12 form-label">First Name:</span>
+            <span class="col-md-6 col-xs-12">
+      <input type="text" name="firstName" placeholder="First Name"
+             ng-model="signing.firstName"
+             required
+             maxlength="10">
+      <span ng-if="signUp.firstName.$error.required
+          && signUp.firstName.$touched">First Name is required</span>
+    </span>
+        </div>
+        <br/>
+        <br/>
+        <div>
+            <span class="col-md-6 col-xs-12 form-label">Last Name:</span>
+            <span class="col-md-6 col-xs-12">
+      <input type="text" name="lastName" placeholder="Your Last Name"
+             ng-model="signing.lastName"
+             required
+             maxlength="10">
+      <span ng-if="signUp.lastName.$error.required
+          && signUp.lastName.$touched">Last Name is required</span>
+    </span>
+        </div>
+        <br/>
+        <br/>
+        <div>
+            <span class="col-md-6 col-xs-12 form-label">Email Address:</span>
+            <span class="col-md-6 col-xs-12">
+      <input type="email" name="email" placeholder="Your Email Address"
+             required
+             ng-model="signing.email">
+      <span ng-if="signUp.email.$error.required
+          && signUp.email.$touched">Email is required</span>
+      <span ng-if="signUp.email.$touched
+              && !(signUp.email.$error.required)
+              && signUp.email.$invalid">Email should resemble ex: test@gmail.com</span>
+    </span>
+        </div>
+        <br/>
+        <br/>
+        <div>
+            <span class="col-md-6 col-xs-12 form-label">Phone Number:</span>
+            <span class="col-md-6 col-xs-12">
+      <input type="text" name="phoneNumber" placeholder="Your Phone Number"
+             ng-model="signing.phoneNumber"
+             required
+             pattern="^(\(\d{3}\)|\d{3})-?\d{3}-?\d{4}$">
+      <span ng-if="signUp.phoneNumber.$error.required
+          && signUp.phoneNumber.$touched">Phone Number is required</span>
+          <span ng-if="signUp.phoneNumber.$touched &&
+          !signUp.phoneNumber.$error.required &&
+             signUp.phoneNumber.$invalid">Must be 10 digits (parentheses and hyphens optional)</span>
+    </span>
+        </div>
+        <br/>
+        <br/>
+        <div>
+            <span class="col-md-6 col-xs-12 form-label">Favorite Menu Item:</span>
+            <span class="col-md-6 col-xs-12">
+      <input type="text" name="favoriteMenuItem" placeholder="Favorite Menu Number"
+             ng-model="signing.favoriteMenuItem"
+             required
+             ng-change="signing.checkIfMenuItemExists()"
+             ng-model-options="{debounce:300}"
+             maxlength="3">
+      <span ng-if="signUp.favoriteMenuItem.$error.required
+          && signUp.favoriteMenuItem.$touched">Favorite menu item is required</span>
+        <span ng-if="signing.menuItemMissing">
+            No matching menu item found.
+        </span>
+    </span>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div>
+            <button id="signUp-submit" type="button" name="button"
+                    ng-disabled="signUp.firstName.$invalid || signUp.lastName.$invalid || signUp.email.$invalid || signUp.phoneNumber.$invalid || signUp.favoriteMenuItem.$invalid"
+                    ng-click="signing.register()">Register
+            </button>
+        </div>
+        <div ng-if="signing.isRegistered" class="signUp-title">
+            You information has been saved.
+        </div>
+    </form>
+</div>
