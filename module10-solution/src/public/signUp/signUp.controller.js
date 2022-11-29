@@ -10,14 +10,21 @@
         const controller = this;
 
         controller.register = function () {
-            MenuService.getMenuItem(controller.favoriteMenuItem)
+            let favoriteMenuItem = controller.favoriteMenuItem
+            let [category] = favoriteMenuItem.split(/(\d+)/)
+
+            MenuService.getMenuItem(category)
                 .then(response => {
-                    if (response) {
+                    let menuItem = response?.menu_items?.find(x => x.short_name === favoriteMenuItem)
+                    let menuItemMissing = !menuItem
+
+                    if (response && !menuItemMissing) {
                         UserService.register(controller);
+                        controller.favoriteMenuItemCategory = category
+                        controller.menuItem = menuItem
                         controller.isRegistered = true;
-                        controller.menuItemMissing = false;
                     } else {
-                        controller.menuItemMissing = true;
+                        controller.menuItemMissing = menuItemMissing;
                         controller.isRegistered = false;
                     }
                 }).catch(e => {
@@ -27,10 +34,14 @@
         }
 
         controller.checkIfMenuItemExists = function () {
-            MenuService.getMenuItem(controller.favoriteMenuItem)
+            let favoriteMenuItem = controller.favoriteMenuItem
+            let [category] = favoriteMenuItem.split(/(\d+)/)
+
+            MenuService.getMenuItem(category)
                 .then(response => {
-                    controller.menuItemMissing = !response;
+                    controller.menuItemMissing = !response?.menu_items?.find(x => x.short_name === favoriteMenuItem)
                 }).catch(e => {
+                console.log('Menu item exists failure: %s', e.message)
                 controller.menuItemMissing = true;
             })
         }
