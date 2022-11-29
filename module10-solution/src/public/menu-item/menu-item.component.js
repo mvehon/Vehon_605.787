@@ -5,15 +5,9 @@
         .component('menuItem', {
             templateUrl: 'src/public/menu-item/menu-item.html',
             bindings: {
-                menuItem: '<'
-            },
-            controller: MenuItemController
+                menuItem: '<',
+                categoryShortName: '<'
+            }
         });
 
-    MenuItemController.$inject = ['ApiPath'];
-
-    function MenuItemController(ApiPath) {
-        const $ctrl = this;
-        $ctrl.basePath = ApiPath;
-    }
 })();

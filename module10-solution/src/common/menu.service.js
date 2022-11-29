@@ -17,11 +17,7 @@
         };
 
         service.getMenuItems = function (category) {
-            const config = {
-                params: {category}
-            };
-
-            return $http.get(ApiPath + '/menu_items.json', config).then(function (response) {
+            return $http.get(ApiPath + `/menu_items/${category}.json`).then(function (response) {
                 return response.data;
             });
         };
