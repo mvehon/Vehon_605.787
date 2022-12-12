@@ -13,7 +13,9 @@
         controller.user = UserService.getUserInfo();
 
         if (controller.isRegistered) {
-            MenuService.getMenuItem(controller.user.favoriteMenuItem)
+            let [category, number] = controller.user.favoriteMenuItem.split(/(\d+)/)
+
+            MenuService.getMenuItem(category, number)
                 .then(function (response) {
                     controller.menuItem = response;
                 })

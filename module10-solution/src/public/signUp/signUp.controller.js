@@ -11,20 +11,17 @@
 
         controller.register = function () {
             let favoriteMenuItem = controller.favoriteMenuItem
-            let [category] = favoriteMenuItem.split(/(\d+)/)
+            let [category, number] = favoriteMenuItem.split(/(\d+)/)
 
-            MenuService.getMenuItem(category)
+            MenuService.getMenuItem(category, number)
                 .then(response => {
-                    let menuItem = response?.menu_items?.find(x => x.short_name === favoriteMenuItem)
-                    let menuItemMissing = !menuItem
-
-                    if (response && !menuItemMissing) {
+                    if (response) {
                         UserService.register(controller);
                         controller.favoriteMenuItemCategory = category
-                        controller.menuItem = menuItem
+                        controller.menuItem = response
                         controller.isRegistered = true;
                     } else {
-                        controller.menuItemMissing = menuItemMissing;
+                        controller.menuItemMissing = true;
                         controller.isRegistered = false;
                     }
                 }).catch(e => {
@@ -39,9 +36,9 @@
 
             //Only run this check when user has input a category + the number
             if (category && number) {
-                MenuService.getMenuItem(category)
+                MenuService.getMenuItem(category, number)
                     .then(response => {
-                        controller.menuItemMissing = !response?.menu_items?.find(x => x.short_name === favoriteMenuItem)
+                        controller.menuItemMissing = false;
                     }).catch(e => {
                     console.log('Menu item exists failure: %s', e.message)
                     controller.menuItemMissing = true;
