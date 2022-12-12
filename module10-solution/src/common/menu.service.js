@@ -22,8 +22,9 @@
             });
         };
 
-        service.getMenuItem = function (shortName) {
-            return $http.get(ApiPath + `/menu_items/${shortName}.json`).then(function (response) {
+        service.getMenuItem = function (category, number) {
+            number -= 1 //The number name starts from 1 but the result starts at 0
+            return $http.get(ApiPath + `/menu_items/${category}/menu_items/${number}.json`).then(function (response) {
                 return response.data;
             });
         };
